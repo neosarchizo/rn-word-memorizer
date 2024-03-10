@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 
 import {ParamList} from './types'
-import Voca from '../screens/voca'
+import Voca from './stacks/voca'
 
 const Tab = createBottomTabNavigator<ParamList>()
 const {Navigator, Screen} = Tab
