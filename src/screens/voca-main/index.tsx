@@ -2,7 +2,7 @@ import React, {Component, FC, useCallback, useEffect} from 'react'
 import {Text, TouchableOpacity} from 'react-native'
 
 import {Props} from './types'
-import {TxtAdd} from './styles'
+import {TxtRightHeaderButton} from '../../styled-components'
 
 const Main: FC<Props> = props => {
   const {navigation} = props
@@ -13,7 +13,7 @@ const Main: FC<Props> = props => {
         onPress={() => {
           navigation.push('VocaAdd')
         }}>
-        <TxtAdd>추가하기</TxtAdd>
+        <TxtRightHeaderButton>추가하기</TxtRightHeaderButton>
       </TouchableOpacity>
     ),
     [navigation],
