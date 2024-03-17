@@ -10,8 +10,8 @@ const {Navigator, Screen} = Stack
 const Router: FC = () => {
   return (
     <Navigator>
-      <Screen name="VocaMain" component={VocaMain} />
-      <Screen name="VocaAdd" component={VocaAdd} />
+      <Screen name="VocaMain" component={VocaMain} options={{title: '단어장'}} />
+      <Screen name="VocaAdd" component={VocaAdd} options={{title: '단어 추가'}} />
     </Navigator>
   )
 }

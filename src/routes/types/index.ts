@@ -5,4 +5,6 @@ export interface ParamList extends ParamListBase {
   Sentence: undefined
   Quiz: undefined
   Settings: undefined
+  VocaMain: undefined
+  VocaAdd: undefined
 }
