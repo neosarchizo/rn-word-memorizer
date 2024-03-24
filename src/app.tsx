@@ -1,7 +1,12 @@
 import React, {FC} from 'react'
 
 import Router from './routes'
+import {WordProvider} from './contexts/word'
 
-const App: FC = () => <Router />
+const App: FC = () => (
+  <WordProvider>
+    <Router />
+  </WordProvider>
+)
 
 export default App

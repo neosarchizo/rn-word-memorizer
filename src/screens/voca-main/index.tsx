@@ -3,9 +3,14 @@ import {Text, TouchableOpacity} from 'react-native'
 
 import {Props} from './types'
 import {TxtRightHeaderButton} from '../../styled-components'
+import {useWord} from '../../contexts/word'
 
 const Main: FC<Props> = props => {
   const {navigation} = props
+
+  const [{words}] = useWord()
+
+  console.log('words!!', words)
 
   const handleOnRenderHeaderRight = useCallback<() => Component>(
     () => (
