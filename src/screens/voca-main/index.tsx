@@ -1,9 +1,11 @@
 import React, {Component, FC, useCallback, useEffect} from 'react'
-import {Text, TouchableOpacity} from 'react-native'
+import {TouchableOpacity} from 'react-native'
 
 import {Props} from './types'
 import {TxtRightHeaderButton} from '../../styled-components'
 import {useWord} from '../../contexts/word'
+import {List} from './styles'
+import Item from './components/item'
 
 const Main: FC<Props> = props => {
   const {navigation} = props
@@ -30,7 +32,17 @@ const Main: FC<Props> = props => {
     })
   }, [navigation, handleOnRenderHeaderRight])
 
-  return <Text>Voca Main</Text>
+  /*
+      <FlatList
+        data={DATA}
+        renderItem={({item}) => <Item title={item.title} />}
+        keyExtractor={item => item.id}
+      />
+  */
+
+  return (
+    <List data={words} renderItem={({item}) => <Item word={item} />} keyExtractor={w => w.id} />
+  )
 }
 
 export default Main
