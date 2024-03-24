@@ -1,7 +1,17 @@
-import React, {createContext, FC, PropsWithChildren, useContext, useMemo, useState} from 'react'
+import React, {
+  createContext,
+  FC,
+  PropsWithChildren,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import uuid from 'react-native-uuid'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import {WordManager, WordState, WordWithID} from './types'
+import {STORAGE_KEY} from './constants'
 
 const WordContext = createContext<[WordState, WordManager]>([
   {
@@ -18,6 +28,16 @@ export const WordProvider: FC<PropsWithChildren> = props => {
 
   const [words, setWords] = useState<Array<WordWithID>>([])
 
+  useEffect(() => {
+    AsyncStorage.getItem(STORAGE_KEY).then(value => {
+      if (value === null) {
+        return
+      }
+      setWords(JSON.parse(value))
+    })
+    return () => {}
+  }, [])
+
   const manager = useMemo<WordManager>(
     () => ({
       addWord: w => {
@@ -28,8 +48,11 @@ export const WordProvider: FC<PropsWithChildren> = props => {
           // ...v === 1, 2, 3
           // v = {a:1, b:2}
           // ...v === a:1, b:2
-          return [{...w, id: uuid.v4()}, ...v]
+          const newWord: WordWithID = {...w, id: uuid.v4()}
+          AsyncStorage.setItem(STORAGE_KEY, JSON.stringify([newWord, ...v]))
+          return [newWord, ...v]
         })
+        // TODO store data in storage
       },
       removeWord: id => {
         setWords(v =>

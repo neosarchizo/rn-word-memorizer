@@ -1,0 +1,1 @@
+export const STORAGE_KEY = 'WORD_MEMORIZER@WORDS'
